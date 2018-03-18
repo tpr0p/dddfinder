@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Configure standards -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>forth floor best floor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Import jQuery. -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <script type="text/javascript">
+        var data = {
+            lat: 37.4220,
+            lng: 122.0841
+        };
+
+        $.post("find-nearest.php", data, function(data){
+            document.write(data);
+        });
+    </script>
+
+</body>
+</html>

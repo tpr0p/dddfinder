@@ -1,5 +1,10 @@
-*.vscode
-settings.json
-*.DS_Store
+#Sensitive
 config.py
+config.inc
+
+#System
+*.DS_Store
 *.pyc
+
+#IDE
+*.vscode
