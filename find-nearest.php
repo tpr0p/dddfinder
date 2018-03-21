@@ -1,23 +1,25 @@
-<!-- find-nearest.php -->
-<!-- Print all restaurants from database.-->
+<!-- find-nearest.php - 03/19/2018-->
 <?php
-    include("config.inc");
+    // config.php defines all constants begginning with SQL_*
+    include "config.php";
 
     // Open database connection.
-    $db = mysqli_connect($sql_host, $sql_user, $sql_password, $sql_db)
+    $db = mysqli_connect(SQL_HOST, SQL_USER, SQL_PASSWORD, SQL_DATABASE)
             or die("Error connecting to MySQL server.");
 
-    $me_lat = $_POST['lat'];
-    $me_lng = $_POST['lng'];
+    // Retrieve user position from http post.
+    $user_lat = $_POST['lat'];
+    $user_lng = $_POST['lng'];
 
-    // Query restaurants from database.
-    $target_table  = "restaurants";
-    $result_limit  = "5";
-    $hav_distance  = "12742 * ASIN(SQRT(POW(SIN((RADIANS(latitude -" . $me_lat . "))/2),2) + COS(RADIANS(latitude)) * COS(RADIANS(" . $me_lat . ")) * POW(SIN((RADIANS(longitude - " . $me_lng . "))/2),2)))";
-    $query         = "SELECT *, " . $hav_distance . " as distance FROM " . $target_table . " ORDER BY distance LIMIT " . $result_limit;
-    $result        = mysqli_query($db, $query) or die("Error querying database.");
+    // Build query that retrieves 5 nearest restaurants to the user from database.
+    $result_limit = "5";
+    // hav_distance uses the haversine distance formula to compute the distance between the user and a given restaurant from the database.
+    // Distance is measured in kilometers (see 12742km used as the diameter of earth).
+    $hav_distance = "12742 * ASIN(SQRT(POW(SIN((RADIANS(latitude - " . $user_lat . "))/2),2) + COS(RADIANS(latitude)) * COS(RADIANS(" . $user_lat . ")) * POW(SIN((RADIANS(longitude - " . $user_lng . "))/2),2)))";
+    $query        = "SELECT *, " . $hav_distance . " as distance FROM " . SQL_TABLE . " ORDER BY distance LIMIT " . $result_limit;
+    $result       = mysqli_query($db, $query) or die("Error querying database.");
 
-    // Print results from query.
+    // Return results from query.
     while ($row = mysqli_fetch_array($result)) {
         echo $row["id"] . " " . $row["name"] . " " . $row["latitude"] . " " . $row["longitude"] . " " . $row["address"] . " " . $row["url"] . "<br />";
     }

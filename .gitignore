@@ -1,6 +1,6 @@
 #Sensitive
 config.py
-config.inc
+config.php
 
 #System
 *.DS_Store

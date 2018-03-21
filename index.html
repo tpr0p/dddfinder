@@ -1,27 +1,18 @@
 <!DOCTYPE html>
+<!-- index.html - 03/21/2018-->
 <html>
-<head>
-    <!-- Configure standards -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>forth floor best floor</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <!-- Configure page. -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>forth floor best floor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
 
-    <!-- Import jQuery. -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-
-    <script type="text/javascript">
-        var data = {
-            lat: 37.4220,
-            lng: 122.0841
-        };
-
-        $.post("find-nearest.php", data, function(data){
-            document.write(data);
-        });
-    </script>
-
-</body>
+    <body>
+        <!-- Import jQuery. -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Import lifecycle scripts. -->
+        <script type="text/javascript" src="main.js" ></script>
+    </body>
 </html>
