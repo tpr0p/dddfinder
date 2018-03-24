@@ -46,7 +46,9 @@ function get_max_page_index(){
     // The 0-indexed location of the second to last button in the nav bar. 
     $max_page_button_index = $nav_button_count - 2;
     // The plaintext of the second to last button in the nav bar, i.e. the max_page_index.
-    $max_page_index = $nav_bar -> find("li[class=o-Pagination__a-ListItem]", $max_page_button_index) -> plaintext;
+    $max_page_index_str = $nav_bar -> find("li[class=o-Pagination__a-ListItem]", $max_page_button_index) -> plaintext;
+    // Exctract the integer value from the string.
+    $max_page_index     = filter_var($max_page_index_str, FILTER_SANITIZE_NUMBER_INT);
 
     return $max_page_index;
 }
